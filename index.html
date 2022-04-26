@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カラー診断</title>
+  <link rel="stylesheet" href="main.css/main.css">
+</head>
+<body>
+  <h1>カラー診断</h1>
+
+  <p id="number">第 n 問</p>
+
+  <p id="question"></p>
+
+  <div>
+    <ul>
+      <li><button id="answer00">YES</button></li>
+      <li><button id="answer01">NO</button></li>
+      
+    </ul>
+  </div>
+
+    <p>結果</p>
+    <div class="result_BW">
+     あなたはブルベ冬
+    </div>
+    <div class="result_BS">
+      あなたはブルベ夏
+    </div>
+    <div class="result_YS">
+      あなたはイエベ春
+    </div>
+    <div class="result_YA">
+      あなたはイエベ秋
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+<script>
+
+const quiz = [
+  { //質問0  
+    question:'肌の色はどちらかといえば明るめ',
+    answers:['YES'  , 'NO'],
+    correct:[0],
+  },
+  { //質問1
+    question:'地毛の色が暗めの茶色もしくは黒に近い',
+    answers:['YES' , 'NO'],
+    correct:[0],
+  },
+  { //質問2
+    question:'頬に赤みが出やすい',
+    answers:['YES' , 'NO'],
+    correct:[0],
+  },
+  { //質問3
+    question:'穏やかな色やパステルが似合う',
+    answers:['YES' , 'NO'],
+    correct:[0],
+  },
+  { //質問4
+    question:'黒やネイビー、グレーなどの無彩色が似合う',
+    answers:['YES' , 'NO'],
+    correct:[0],
+  },
+  {//質問5
+    question:'顔色が良くないと言われることが多い',
+    answers:['YES' , 'NO'],
+    correct:[0],
+  },
+  { //質問6
+    question:'はっきりとしたコントラストのある色が似合う',
+    answers:['YES' , 'NO'],
+    correct:[0],
+  },
+  { //質問7
+    question:'ブラウン、カーキ、ゴールドなどのスモーキーカラーが似合う',
+    answers:['YES' , 'NO'],
+    correct:[0],
+  },
+  { //質問8
+    question:'日焼けしやすい',
+    answers:['YES' , 'NO'],
+    correct:[0],
+  }, 
+]
+
+//結果記録用の配列用意
+const result = [];
+
+//第n問の表示　
+$('#number').text('第' + (result.length + 1) + '問');
+  console.log('text');
+//第１問目の取得
+$('#question').text(quiz[0].question);
+$('#answer00').text(quiz[0].answers[0]);
+$('#answer01').text(quiz[0].answers[1]);
+
+//valueの取得
+$('#answer00').val(0);
+$('#answer01').val(1);
+
+
+// var btn = $('#answer00').val();
+// console.log( btn );
+
+// document.getElementById('#answers00')
+// addEventListener('click', function(){
+// alert('id名「' + this.id + '」のボタンを押しました。');
+// });
+
+//第１問でのYES,NOでの質問切り替え
+if( result.length == 0){
+ $('button').on('click',function(e) {
+   $('.result').hide();
+  // resultの数で問題数を指定 !=じゃない場合 returnこの下の処理実行しない
+  if (result.length != 0){
+    return;
+  };
+
+    if (Number(e.target.value) === 0) { 
+      //YES選択した場合
+      console.log('aaaaa');
+      $('#question').text(quiz[1].question);
+      console.log(quiz[1].question);
+      // valの代入
+      $('#answer00').val('2_0'); //YES
+      $('#answer01').val('2_1'); //NO
+      result.push('YES');
+      $('#number').text( '第' +  '2' + ' 問');
+
+    
+    }else {
+      //NO選択した場合
+      console.log('bbbbbb');
+      $('#question').text(quiz[1].question);
+      $('#answer00').val('3_0'); //YES
+      $('#answer01').val('3_1'); //NO
+      result.push('NO');
+      $('#number').text( '第' + '2' + '問'); 
+    }
+  });
+};
+  // 松本さんから教えていただいた別のやり方
+    // if(result.length == 0){
+    //   $('#question').text(quiz[1].question);
+    // }else if(result.length == 1){
+    //   if(result[0] == 'YES' && Number(e.target.value) == 0){
+
+    //   }else if(result[0] == 'YES' && Number(e.target.value) == 1){
+
+    //   }else if(result[0] == 'NO' && Number(e.target.value) == 0){
+
+    //   }else if(result[0] == 'NO' && Number(e.target.value) == 1){
+    //   }
+    // }else if(result.length == 2){
+    // }else if(result.length == 3){
+    // }
+
+
+// 第２問  1問目YES選んだ
+if( result.length == 1 && val == '2_'){
+  $('button').on('click',function(e) {
+    if (result.length != 1){
+      return;
+    };
+    console.log(result.length);
+    // $('#answer00').val('2_0');
+    // $('#answer01').val('2_1');
+
+      if (Number(e.target.value) = '2_0'){
+        //YES選択した場合
+        console.log(22222);
+        $('#question').text(quiz[5].question);
+        $('#answer00').val('4_0'); //YES
+        $('#answer01').val('4_1'); //NO
+        result.push('YES');
+        $('#number').text( '第' + (result.length + 1) + ' 問');
+
+      }else {
+        //NO選択した場合
+        console.log(33333);
+        $('#question').text(quiz[8].question);
+        $('#answer00').val('5_0'); //YES
+        $('#answer01').val('5_1'); //NO
+        result.push('NO');
+        $('#number').text( '第' + (result.length + 1) + ' 問');
+      };
+  });
+};
+
+// 第２問  1問目NO選んだ
+if( result.length == 1 && val == '3_'){
+  $('button').on('click',function(e) {
+    if (result.length != 1){
+      return;
+    };
+    console.log(result.length);
+    // $('#answer00').val('2_0');
+    // $('#answer01').val('2_1');
+
+      if (Number(e.target.value) = '2_0'){
+        //YES選択した場合
+        console.log(22222);
+        $('#question').text(quiz[5].question);
+        $('#answer00').val('6_0'); //YES
+        $('#answer01').val('6_1'); //NO
+        result.push('YES');
+        $('#number').text( '第' + (result.length + 1) + ' 問');
+
+      }else {
+        //NO選択した場合
+        console.log(33333);
+        $('#question').text(quiz[8].question);
+        $('#answer00').val('7_0'); //YES 
+        $('#answer01').val('7_1'); //NO
+        result.push('NO');
+        $('#number').text( '第' + (result.length + 1) + ' 問');
+      };
+  });
+};
+
+//第3問 2問目でYES
+if( result.length == 2){
+  $('button').on('click',function(e) {
+    if (result.length != 2){
+      return;
+    };
+
+  if (Number(e.target.value) == '2_0'){
+    //YES選択した場合
+    $('#question').text(quiz[5].question);
+    $('#answers00').val('4_0');
+    $('#answers01').val('4_1');
+    result.push('YES');
+    $('#number').text( '第' + (result.length + 1) + ' 問');
+
+  }else {
+    //NO選択した場合
+    $('#question').text(quiz[8].question);
+    $('#answers00').val('5_0');
+    $('#answers01').val('5_1');
+    result.push('NO');
+    $('#number').text( '第' + (result.length + 1) + ' 問');
+    };
+  });
+};
+
+
+
+
+</script>
+
+</body>
+</html>
